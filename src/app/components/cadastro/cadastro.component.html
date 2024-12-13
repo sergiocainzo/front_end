@@ -1,0 +1,108 @@
+<!--Container de Cadastro-->
+<div class="d-flex justify-content-evenly">
+  <div class="text-center w-100" style="align-items: center">
+    <img src="cadastro.png" alt="Cadastro" style="width: 20%" />
+    <h3 class="card-title">Cadastro</h3>
+    <div class="card-body">
+      <form>
+        <div class="form-floating mb-3 mt-3">
+          <input
+            type="text"
+            class="form-control"
+            id="modelo"
+            name="modelo"
+            placeholder="Modelo"
+            [(ngModel)]="marca.modelo"
+          />
+          <label for="modelo">Modelo</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control"
+            id="marca"
+            name="marca"
+            placeholder="Marca"
+            [(ngModel)]="marca.marca"
+          />
+          <label for="marca">Marca</label>
+        </div>
+
+        <div class="d-flex" style="justify-content: center">
+          <button
+            class="btn btn-outline-success btn-lg mt-3"
+            *ngIf="btnCadastro"
+            (click)="cadastrar()"
+          >
+            Cadastrar
+          </button>
+          <button
+            class="btn btn-outline-dark btn-lg mt-3 mx-3"
+            *ngIf="btnCadastro"
+            (click)="limparFormulario()"
+          >
+            Limpar
+          </button>
+          <button
+            class="btn btn-outline-warning btn-lg mt-3"
+            *ngIf="!btnCadastro"
+            (click)="editar()"
+          >
+            Editar
+          </button>
+          <button
+            class="btn btn-outline-danger btn-lg mt-3 mx-3"
+            *ngIf="!btnCadastro"
+            (click)="remover()"
+          >
+            Remover
+          </button>
+          <button
+            class="btn btn-outline-primary btn-lg mt-3"
+            *ngIf="!btnCadastro"
+            (click)="cancelar()"
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!--Container da Tabela-->
+  <div class="w-100">
+    <img
+      src="tabela.png"
+      alt="Tabela"
+      style="width: 20%"
+      class="rounded mx-auto d-block"
+    />
+    <h3 class="card-title text-center">Tabela</h3>
+    <div class="card-body">
+      <table class="table align-middle" *ngIf="tabela">
+        <thead>
+          <th>#</th>
+          <th>Modelo</th>
+          <th>Marca</th>
+          <th>Selecionar</th>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr *ngFor="let item of marcas; index as i">
+            <th>{{ i + 1 }}</th>
+            <td>{{ item.modelo }}</td>
+            <td>{{ item.marca }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-outline-dark btn-ms"
+                (click)="selecionarMarca(i)"
+              >
+                Selecionar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
